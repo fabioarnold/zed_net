@@ -201,7 +201,7 @@ ZED_NET_DEF const char *zed_net_host_to_str(unsigned int host) {
 }
 
 ZED_NET_DEF zed_net_udp_socket_t *zed_net_udp_socket_open(unsigned int port, int non_blocking) {
-    zed_net_udp_socket_t *sock = malloc(sizeof(zed_net_udp_socket_t));
+    zed_net_udp_socket_t *sock = (zed_net_udp_socket_t*)malloc(sizeof(zed_net_udp_socket_t));
     if (!sock) {
         zed_net__error("Out of memory");
         return NULL;
