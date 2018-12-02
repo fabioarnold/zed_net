@@ -230,7 +230,8 @@ ZED_NET_DEF zed_net_udp_socket_t *zed_net_udp_socket_open(unsigned int port, int
     // Set the socket to non-blocking if neccessary
     if (non_blocking) {
 #ifdef _WIN32
-        if (ioctlsocket(sock->handle, FIONBIO, &non_blocking) != 0) {
+        u_long non_blocking_ul = (u_long)non_blocking;
+        if (ioctlsocket(sock->handle, FIONBIO, &non_blocking_ul) != 0) {
             zed_net_udp_socket_close(sock);
             zed_net__error("Failed to set socket to non-blocking");
             return NULL;
